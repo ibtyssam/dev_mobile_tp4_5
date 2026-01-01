@@ -1,21 +1,16 @@
 import { View, Text, Button } from "react-native";
-import { useDispatch } from "react-redux"; // conservé
-import { removeTodo } from "../store/todosSlice"; // conservé (appel commenté ci-dessous)
-import { useTodoStore } from "../store/useTodoStore"; // Zustand
+// import { useDispatch } from "react-redux"; // Redux 
+// import { removeTodo } from "../store/todosSlice"; // Redux 
+import { useTodoStore } from "../store/useTodoStore";
 
 export default function TodoDetailsScreen({ route, navigation }) {
   const { id, title } = route.params;
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch(); // Redux (commented for progress)
   const { removeTodo: zRemoveTodo } = useTodoStore();
 
   const handleDelete = () => {
-    // Utilise Zustand comme source principale
     zRemoveTodo(id);
-
-    // Appel Redux conservé pour référence; décommentez si vous souhaitez supprimer aussi côté Redux
-    // dispatch(removeTodo(id));
-
-    navigation.goBack();
+    // dispatch(removeTodo(id)); // Redux 
   };
 
   return (
